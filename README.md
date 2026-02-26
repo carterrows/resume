@@ -1,7 +1,7 @@
 # Resume (LaTeX)
 
 This project builds a single-page LaTeX resume (`resume.tex`) with:
-- Ivory background (`#FFFFF0`)
+- Ivory background close to white (`#FFFFFC`)
 - Header color `#06402B`
 - Body text in off-black
 - Contact icon support from `icons/` SVG assets

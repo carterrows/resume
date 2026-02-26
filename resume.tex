@@ -14,7 +14,7 @@
 \usepackage{fontawesome5}
 \usepackage[hidelinks]{hyperref}
 
-\definecolor{Ivory}{HTML}{FFFFF0}
+\definecolor{Ivory}{HTML}{FFFFFC}
 \definecolor{HeaderGreen}{HTML}{06402B}
 \definecolor{BodyText}{HTML}{1B1B1B}
 \definecolor{MutedText}{HTML}{4A4A4A}
@@ -58,24 +58,18 @@
 }
 
 \newcommand{\contactitem}[4]{%
-  \begingroup
-  \setlength{\fboxsep}{4pt}%
   \href{#1}{%
-    \fcolorbox{HeaderGreen!35}{white}{%
-      \begin{tabular}{@{}c@{\hspace{0.35em}}l@{}}
-        \raisebox{-0.15em}{\iconwithfallback{#2}{#3}} & {\small #4}
-      \end{tabular}%
-    }%
+    \begin{tabular}{@{}c@{\hspace{0.3em}}l@{}}
+      \raisebox{-0.15em}{\iconwithfallback{#2}{#3}} & {\footnotesize #4}
+    \end{tabular}%
   }%
-  \endgroup
 }
 
 \newcommand{\cvsection}[1]{%
-  \vspace{0.55em}
-  {\headingfont\large\color{HeaderGreen}\textbf{#1}}\par
-  \vspace{0.18em}
-  {\color{HeaderGreen}\rule{\linewidth}{0.6pt}}\par
-  \vspace{0.2em}
+  \vspace{0.6em}
+  \noindent{\headingfont\fontsize{19}{21}\selectfont\color{HeaderGreen}\textbf{#1}}%
+  \hspace{0.5em}{\color{HeaderGreen}\leaders\hrule height 0.6pt\hfill}\par
+  \vspace{0.22em}
 }
 
 \newenvironment{cventries}{%
@@ -91,21 +85,21 @@
 
 \newcommand{\entrytitleline}[2]{%
   \begin{minipage}[t]{0.74\linewidth}
-    {\blurbfont\textbf{#1}}
+    {\blurbfont\small\textbf{#1}}
   \end{minipage}%
   \hfill%
   \begin{minipage}[t]{0.24\linewidth}
-    \raggedleft {\small\color{MutedText} #2}
+    \raggedleft {\footnotesize\color{MutedText} #2}
   \end{minipage}\par
 }
 
 \newcommand{\entrysubtitleline}[2]{%
   \begin{minipage}[t]{0.74\linewidth}
-    {\small\textit{#1}}
+    {\footnotesize\textit{#1}}
   \end{minipage}%
   \hfill%
   \begin{minipage}[t]{0.24\linewidth}
-    \raggedleft {\small\color{MutedText} #2}
+    \raggedleft {\footnotesize\color{MutedText} #2}
   \end{minipage}\par
 }
 
@@ -123,7 +117,7 @@
 
 \newenvironment{cvitems}{%
   \begin{itemize}[leftmargin=1.2em,itemsep=0.08em,topsep=0.08em]
-  \blurbfont
+  \blurbfont\footnotesize
 }{%
   \end{itemize}
 }
@@ -140,13 +134,13 @@
 }
 
 \newcommand{\cvskill}[2]{%
-  \item {\textbf{#1}: {\blurbfont #2}}
+  \item {\small\textbf{#1}: {\blurbfont #2}}
 }
 
 \begin{document}
 
 \begin{center}
-  {\headingfont\fontsize{27}{29}\selectfont\color{HeaderGreen}\textbf{Carter Rows}}\par
+  {\headingfont\fontsize{33}{35}\selectfont\color{HeaderGreen}\textbf{Carter Rows}}\par
   \vspace{0.1em}
   {\blurbfont\normalsize Technology Analyst @ Accenture}\par
   \vspace{0.5em}
