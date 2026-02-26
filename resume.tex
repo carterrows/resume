@@ -1,0 +1,165 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{iftex}
+\ifPDFTeX
+  \errmessage{This resume requires LuaLaTeX or XeLaTeX}
+\fi
+
+\usepackage[letterpaper,margin=0.5in]{geometry}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{Ivory}{HTML}{FFFFF0}
+\definecolor{HeaderGreen}{HTML}{06402B}
+\definecolor{BodyText}{HTML}{1B1B1B}
+\definecolor{MutedText}{HTML}{4A4A4A}
+
+\pagecolor{Ivory}
+\color{BodyText}
+
+\IfFontExistsTF{Inter}{
+  \setmainfont{Inter}
+}{
+  \setmainfont{TeX Gyre Heros}
+}
+
+\IfFontExistsTF{Source Serif 4}{
+  \newfontfamily\headingfont{Source Serif 4}
+}{
+  \newfontfamily\headingfont{TeX Gyre Termes}
+}
+
+\IfFontExistsTF{Source Sans 3}{
+  \newfontfamily\blurbfont{Source Sans 3}
+}{
+  \newfontfamily\blurbfont{TeX Gyre Heros}
+}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=HeaderGreen
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+\newcommand{\iconwithfallback}[2]{%
+  \IfFileExists{#1.pdf}{%
+    \includegraphics[width=0.14in]{#1.pdf}%
+  }{%
+    {\color{HeaderGreen}\small #2}%
+  }%
+}
+
+\newcommand{\contactitem}[4]{%
+  \begingroup
+  \setlength{\fboxsep}{4pt}%
+  \href{#1}{%
+    \fcolorbox{HeaderGreen!35}{white}{%
+      \begin{tabular}{@{}c@{\hspace{0.35em}}l@{}}
+        \raisebox{-0.15em}{\iconwithfallback{#2}{#3}} & {\small #4}
+      \end{tabular}%
+    }%
+  }%
+  \endgroup
+}
+
+\newcommand{\cvsection}[1]{%
+  \vspace{0.55em}
+  {\headingfont\large\color{HeaderGreen}\textbf{#1}}\par
+  \vspace{0.18em}
+  {\color{HeaderGreen}\rule{\linewidth}{0.6pt}}\par
+  \vspace{0.2em}
+}
+
+\newenvironment{cventries}{%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{0pt}
+    \setlength{\itemsep}{0.55em}
+    \setlength{\parsep}{0pt}
+    \setlength{\topsep}{0pt}
+  }
+}{%
+  \end{list}
+}
+
+\newcommand{\entrytitleline}[2]{%
+  \begin{minipage}[t]{0.74\linewidth}
+    {\blurbfont\textbf{#1}}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.24\linewidth}
+    \raggedleft {\small\color{MutedText} #2}
+  \end{minipage}\par
+}
+
+\newcommand{\entrysubtitleline}[2]{%
+  \begin{minipage}[t]{0.74\linewidth}
+    {\small\textit{#1}}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.24\linewidth}
+    \raggedleft {\small\color{MutedText} #2}
+  \end{minipage}\par
+}
+
+\newcommand{\cventry}[5]{%
+  \item
+  \ifstrempty{#4}{%
+    \entrytitleline{#2}{#3}
+    \entrysubtitleline{#1}{}
+  }{%
+    \entrytitleline{#1}{#4}
+    \entrysubtitleline{#2}{#3}
+  }%
+  #5%
+}
+
+\newenvironment{cvitems}{%
+  \begin{itemize}[leftmargin=1.2em,itemsep=0.08em,topsep=0.08em]
+  \blurbfont
+}{%
+  \end{itemize}
+}
+
+\newenvironment{cvskills}{%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{0pt}
+    \setlength{\itemsep}{0.28em}
+    \setlength{\topsep}{0pt}
+    \setlength{\parsep}{0pt}
+  }
+}{%
+  \end{list}
+}
+
+\newcommand{\cvskill}[2]{%
+  \item {\textbf{#1}: {\blurbfont #2}}
+}
+
+\begin{document}
+
+\begin{center}
+  {\headingfont\fontsize{27}{29}\selectfont\color{HeaderGreen}\textbf{Carter Rows}}\par
+  \vspace{0.1em}
+  {\blurbfont\normalsize Technology Analyst @ Accenture}\par
+  \vspace{0.5em}
+
+  \contactitem{https://carterrows.ca}{icons/website}{\faIcon{globe}}{carterrows.ca}\hspace{0.35em}
+  \contactitem{mailto:carter.rows@gmail.com}{icons/email}{\faIcon{envelope}}{carter.rows@gmail.com}\hspace{0.35em}
+  \contactitem{https://github.com/carterrows}{icons/github}{\faIcon{github}}{github}\hspace{0.35em}
+  \contactitem{https://www.linkedin.com/in/carterrows}{icons/linkedin}{\faIcon{linkedin}}{linkedin}
+\end{center}
+
+\input{cv/education.tex}
+\input{cv/skills.tex}
+\input{cv/projects.tex}
+\input{cv/experience.tex}
+
+\end{document}
